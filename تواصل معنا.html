@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>اتصل بنا</title>
-<link rel="stylesheet" href="styles.css"> <!-- تضمين ملف الأنماط -->
+
 </head>
-<style>
-.container {
+<style>.container {
     width: 50%;
     margin: 0 auto;
   }
@@ -43,21 +42,51 @@
   button[type="submit"]:hover {
     background-color: #45a049;
   }
+  
+
 </style>
 <body>
 
 <div class="container">
   <h2>اتصل بنا</h2>
-  <form   action="mailto:menaazez217@gmail.com" method="post" enctype="text/plain">
+  <form id="contactForm" action="emailto:menaazez217@gmail.com" method="post">
     <label for="name">الاسم:</label>
     <input type="text" id="name" name="name" required>
     <label for="email">البريد الإلكتروني:</label>
     <input type="email" id="email" name="email" required>
     <label for="message">الرسالة:</label>
     <textarea id="message" name="message" required></textarea>
-    <button type="submit">إرسال</button>
+    <button type="submit" id="submitBtn">إرسال</button>
   </form>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var form = document.getElementById("contactForm");
+  var submitButton = document.getElementById("submitBtn");
+
+  form.addEventListener("submit", function(event) {
+    event.preventDefault(); // منع إرسال النموذج
+    
+    // التحقق من صحة البريد الإلكتروني
+    var emailInput = document.getElementById("email");
+    var email = emailInput.value.trim();
+    if (!validateEmail(email)) {
+      alert("الرجاء إدخال بريد إلكتروني صحيح.");
+      emailInput.focus();
+      return false;
+    }
+
+    // إرسال النموذج إلى الخادم
+    form.submit();
+  });
+
+  function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
+});
+</script>
 
 </body>
 </html>
