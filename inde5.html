@@ -45,6 +45,65 @@ text-align: center;
             display: block;
             margin: auto;
         }
+        
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .sidebar {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #333;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+    .sidebar a {
+        padding: 10px;
+        text-decoration: none;
+        color: white;
+        display: block;
+        transition: 0.3s;
+    }
+    .sidebar a:hover {
+        background-color: #555;
+    }
+    .sidebar .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: #333;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      position: fixed; /* تثبيت الزر في مكانه أثناء التمرير */
+      top: 20px; /* تحديد المسافة من الأعلى */
+      left: 20px; /* تحديد المسافة من اليسار */
+      z-index: 1000; /* تحديد ترتيب الطبقات للزر لضمان ظهوره فوق العناصر الأخرى */
+    }
+    
+    .openbtn:hover {
+        background-color: #444;
+    }
+    #main {
+      transition: margin-left .5s; /* تحديد خاصية الانتقال والتأثير */
+      padding: 16px;
+      margin-left: 0; /* تحديد هامش اليسار الافتراضي */
+    }
+    
+    .sidebar.active + #main {
+      margin-left: 200px; /* تحديد هامش اليسار عند فتح الشريط الجانبي */
+    }
 </style>
 <body class="body">
     <img class="g" src="2094992_0.jpg">
@@ -89,5 +148,27 @@ text-align: center;
         window.history.back();
       }
     </script>
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="index.html">الرئيسية</a>
+        <a href="تواصل معنا.html">اتصل بنا</a>
+        <a href="سياسة الخصوصيه.html">سياسة الخصوصيه</a>
+      </div>
+      
+      <div id="main">
+        <button class="openbtn" onclick="openNav()">☰ افتح القائمة</button>  
+      </div>
+      
+      <script>
+      function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+      
+      function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+      }
+      </script>
 </body>
 </html>
