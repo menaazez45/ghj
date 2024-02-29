@@ -57,53 +57,32 @@ text-align: center;
         position: fixed;
         top: 0;
         left: 0;
-        background-color: #333;
+        background-color: #111;
         overflow-x: hidden;
+        padding-top: 20px;
         transition: 0.5s;
-        padding-top: 60px;
-    }
-    .sidebar a {
-        padding: 10px;
+      }
+      
+      .sidebar a {
+        padding: 10px 15px;
         text-decoration: none;
-        color: white;
+        font-size: 18px;
+        color: #818181;
         display: block;
-        transition: 0.3s;
-    }
-    .sidebar a:hover {
-        background-color: #555;
-    }
-    .sidebar .closebtn {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        font-size: 36px;
-        margin-left: 50px;
-    }
-    .openbtn {
-      font-size: 20px;
-      cursor: pointer;
-      background-color: #333;
-      color: white;
-      padding: 10px 15px;
-      border: none;
-      position: fixed; /* تثبيت الزر في مكانه أثناء التمرير */
-      top: 20px; /* تحديد المسافة من الأعلى */
-      left: 20px; /* تحديد المسافة من اليسار */
-      z-index: 1000; /* تحديد ترتيب الطبقات للزر لضمان ظهوره فوق العناصر الأخرى */
-    }
+      }
+      
+      .sidebar a:hover {
+        color: #f1f1f1;
+      }
+      
     
-    .openbtn:hover {
-        background-color: #444;
-    }
-    #main {
-      transition: margin-left .5s; /* تحديد خاصية الانتقال والتأثير */
-      padding: 16px;
-      margin-left: 0; /* تحديد هامش اليسار الافتراضي */
-    }
-    
-    .sidebar.active + #main {
-      margin-left: 200px; /* تحديد هامش اليسار عند فتح الشريط الجانبي */
-    }
+      .open-sidebar-btn {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        font-size: 30px;
+      }
+      
 </style>
 <body class="body">
     <img class="g" src="2094992_0.jpg">
@@ -148,27 +127,37 @@ text-align: center;
         window.history.back();
       }
     </script>
-    <div id="mySidebar" class="sidebar">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="index.html">الرئيسية</a>
-        <a href="تواصل معنا.html">اتصل بنا</a>
-        <a href="سياسة الخصوصيه.html">سياسة الخصوصيه</a>
-      </div>
-      
-      <div id="main">
-        <button class="openbtn" onclick="openNav()">☰ افتح القائمة</button>  
-      </div>
-      
-      <script>
-      function openNav() {
-        document.getElementById("mySidebar").style.width = "250px";
-        document.getElementById("main").style.marginLeft = "250px";
-      }
-      
-      function closeNav() {
-        document.getElementById("mySidebar").style.width = "0";
-        document.getElementById("main").style.marginLeft= "0";
-      }
-      </script>
+
+
+<button class="open-sidebar-btn" onclick="toggleSidebar()">☰</button>
+
+<div id="sidebar" class="sidebar">
+  <a href="index.html">الصفحة الرئيسية</a>
+  <a href="تواصل معنا.html">تواصل معنا</a>
+  <a href="سياسة الخصوصيه.html">سياسة الخصوصية</a>
+  <a href="inde5.html">اغلاق</a>
+</div>
+
+<script>
+  function toggleSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    if (sidebar.style.width === "250px") {
+      sidebar.style.width = "0";
+      document.getElementsByClassName("content")[0].style.marginLeft = "0";
+    } else {
+      sidebar.style.width = "250px";
+      document.getElementsByClassName("content")[0].style.marginLeft = "250px";
+    }
+  }
+  
+  function closeSidebar() {
+    var sidebar = document.getElementById("sidebar");
+    if (sidebar.style.width === "250px") {
+      sidebar.style.width = "0";
+      document.getElementsByClassName("content")[0].style.marginLeft = "0";
+    }
+  }
+  
+</script>
 </body>
 </html>
